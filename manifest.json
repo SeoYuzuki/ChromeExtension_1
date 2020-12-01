@@ -14,8 +14,7 @@
   },
   "background": {
     "scripts": [
-      "background.js",
-      "jquery.min.js"
+      "background.js"
     ]
   },
   "commands": {
