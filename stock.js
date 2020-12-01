@@ -19,7 +19,8 @@ createRows();
  */
 $("#btn_add").on('click', function (e) {
     let uid = getUid();
-    let oneDeal = { uid: uid, no: "", num: "", shares: "", price: "", tax: "", handlingfee: "", };
+    let date = "" + new Date();
+    let oneDeal = { uid: uid, date: date, cdate: "", no: "", num: "", shares: "", price: "", tax: "", handlingfee: "", };
 
     chrome.storage.local.get({ deals: [] }, function (result) {
         let deals = result.deals;
@@ -96,12 +97,13 @@ function thisOK(e) {
             if (item.uid === targetuid) {
                 console.log(row.children);
                 newDeal = item;
-                newDeal['no'] = row.children[1].innerText;
-                newDeal['num'] = row.children[2].children[0].value;
-                newDeal['shares'] = row.children[3].children[0].value;
-                newDeal['price'] = row.children[4].children[0].value;
-                newDeal['tax'] = row.children[5].children[0].value;
-                newDeal['handlingfee'] = row.children[6].children[0].value;
+
+                newDeal['cdate'] = row.children[2].children[0].value;
+                newDeal['num'] = row.children[3].children[0].value;
+                newDeal['shares'] = row.children[4].children[0].value;
+                newDeal['price'] = row.children[5].children[0].value;
+                newDeal['tax'] = row.children[6].children[0].value;
+                newDeal['handlingfee'] = row.children[7].children[0].value;
             }
         });
 
@@ -122,18 +124,19 @@ function getRows(deals) {
     let ss = "";
     for (let i = 0; i < deals.length; i++) {
         deal = deals[i];
-        ss = ss + useRowTemplate(deal['uid'], deal['no'], deal['num'], deal['shares'], deal['price'], deal['tax'], deal['handlingfee'])
+        ss = ss + useRowTemplate(deal['uid'], deal['no'], deal['cdate'], deal['num'], deal['shares'], deal['price'], deal['tax'], deal['handlingfee'])
     }
 
     return ss;
 }
 
-function useRowTemplate(uid, NO, num, shares, price, tax, handlingfee) {
+function useRowTemplate(uid, NO, cdate, num, shares, price, tax, handlingfee) {
     let cost = -1;
     let template = `
     <tr>
         <th name="uid" style="display:none" id="${uid}"></th>
         <th name="NO" scope="row">${NO}</th>        
+        <td name="num"><input style="width:100px;" type="text" value="${cdate}"></td>
         <td name="num"><input style="width:50px;" type="text" value="${num}"></td>
         <td name="shares"><input style="width:50px;" type="text" value="${shares}"></td>
         <td name="price"><input style="width:50px;" type="text" value="${price}"></td>
