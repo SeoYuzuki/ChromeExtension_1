@@ -176,10 +176,11 @@ $("#tid1").on('click', function (e) {
             if (axis_array.includes(e.target.axis)) {
 
                 let el_input = document.createElement('input');
-                el_input.style = "width:50px;"
+                el_input.style = "width:50px; background-color: Cornsilk;"
                 el_input.value = e.target.innerText;
                 e.target.innerText = "";
                 e.target.appendChild(el_input);
+                el_input.focus();
                 //e.target.empty();
             }
         }
@@ -215,19 +216,23 @@ $("#tid1").on('click', function (e) {
 /**
  * 確認該筆資料OK - 鍵盤ok
  */
-$("#tid1").on('keyup', function (e) {
+// $("#tid1").on('keyup', function (e) {
 
-    if (e.key === 'Enter' || e.keyCode === 13) {
-        thisOK(e);
-    }
-});
+//     if (e.key === 'Enter' || e.keyCode === 13) {
+//         console.log('ok');
+//         $("#dddd").focus();
+//         console.log(e.target);
+//         //thisOK(e);
+//     }
+// });
 
 /**
  * 有變動就儲存
  */
-// $("#tid1").change(function (e) {
-//     thisOK(e);
-// });
+$("#tid1").change(function (e) {
+    console.log("change");
+    thisOK(e);
+});
 
 $("#tid1").focusout(function (e) {
     console.log("focusout");
@@ -245,6 +250,19 @@ function thisOK(e) {
         }
     }
 
+    /**限定是數字, 如果不是則變成0 */
+    function func2(item, row, tag, index) {
+        if (row.children[index].children.length > 0) {
+            let tempValue = row.children[index].children[0].value;
+            if (isNaN(tempValue)) {
+                item[tag] = "0";
+            } else {
+                item[tag] = row.children[index].children[0].value;
+            }
+
+        }
+    }
+
     chrome.storage.local.get({ deals: [] }, function (result) {
         let deals = result.deals;
 
@@ -258,16 +276,16 @@ function thisOK(e) {
                 item['isPawn'] = row.children[4].children[0].checked;//checked box
 
                 func1(item, row, 'cname', 2);
-                func1(item, row, 'num', 3);
-                func1(item, row, 'handlingfee', 5);
-                func1(item, row, 'shares', 6);
+                func2(item, row, 'num', 3);
+                func2(item, row, 'handlingfee', 5);
+                func2(item, row, 'shares', 6);
                 func1(item, row, 'buydate', 7);
-                func1(item, row, 'buyprice', 8);
+                func2(item, row, 'buyprice', 8);
                 func1(item, row, 'selldate', 11);
-                func1(item, row, 'sellprice', 12);
-                func1(item, row, 'correction', 15);
+                func2(item, row, 'sellprice', 12);
+                func2(item, row, 'correction', 15);
 
-                console.log(row.children[2].children);
+                //console.log(row.children[2].children);
 
             }
         });
@@ -285,6 +303,7 @@ function getRows(deals) {
 
     for (let i = 0; i < deals.length; i++) {
         let deal = deals[i];
+
         let temp = useRowTemplate(deal, i + 1, totalpl);
         ss = ss + temp.template;
         totalpl = temp.totalpl;
@@ -360,10 +379,10 @@ function useRowTemplate(deal, NO, totalpl) {
         <td style="background-color: ${plcolor};" name="percentage" style="width:100px;">${percentage}</td>
         <td axis="totalpl" style="width:100px;">${totalpl}</td>
         <td  style="width: 50px;">
-            <button type="button" class="btn btn-primary">ok</button>
-            <button name="btnClone" type="button" class="btn btn-success">clone</button>
-            <button type="button" class="btn btn-info">lock</button>
-            <button type="button" class="btn btn-danger">del</button>
+            <button type="button" class="btn1 btn-primary" style="display:none">ok</button>
+            <button name="btnClone" type="button" class="btn1 btn-success">clone</button>
+            <button type="button" class="btn1 btn-info">lock</button>
+            <button type="button" class="btn1 btn-danger">del</button>
         </td>        
         
     </tr>
