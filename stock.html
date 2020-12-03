@@ -7,7 +7,8 @@
         <table id="table1" class="table table-bordered" style=" margin:0; padding:0;">
             <thead class="header">
                 <tr>
-                    <th scope="col" style="width: 10px;">NO</th>                    
+                    <th scope="col" style="width: 20px;">NO</th>
+                    <th scope="col" style="width: 10px;display:none">uid</th>
                     <th scope="col" style="width: 50px;">name</th>
                     <th scope="col" style="width: 50px;">num</th>
                     <th scope="col" style="width: 50px;">is Pawn</th>
@@ -22,44 +23,17 @@
                     <th scope="col" style="width: 50px;">sell cost</th>
                     <th scope="col" style="width: 50px;">sell all money</th>
                     <th scope="col" style="width: 50px;">correction</th>
-                    <th scope="col" style="width: 50px;">profit and loss</th>
+                    <th scope="col" style="width: 80px;">profit and loss</th>
                     <th scope="col" style="width: 50px;">percentage</th>
-                    <th scope="col" style="width: 50px;" id='lasttotalpf'>total pf</th>
-                    <th scope="col" style="width: 50px;">delete</th>
-                    <th scope="col" style="width: 50px;"><button type="button" id="btn_add"
-                            class="btn btn-success">Add</button></th>
+                    <th scope="col" style="width: 100px;" id='lasttotalpf'>total pf</th>
+                    <th scope="col" style="width: 250px;"><button type="button" id="btn_add" class="btn btn-success">Add
+                            New</button></th>
 
                 </tr>
             </thead>
 
             <tbody id="tid1">
-                <tr>
-                    <th name="NO" scope="row">1</th>
-                    <td name="num"><input style="width:50px;" type="text"></td>
-                    <td name="shares"><input style="width:50px;" type="text"></td>
-                    <td name="price"><input style="width:50px;" type="text"></td>
-                </tr>
-                <tr>
-                    <th name="NO" scope="row">2</th>
-                    <td name="num"><input style="width:50px;" type="text"></td>
-                    <td name="shares"><input style="width:50px;" type="text"></td>
-                    <td name="price"><input style="width:50px;" type="text"></td>
-                    <td name="num" style="width: 50px;"><button type="button" class="btn btn-danger">del</button></td>
-                    <td name="num" style="width: 50px;"><button type="button" class="btn btn-primary">ok</button></td>
-                </tr>
-                <tr>
-                    <th name="NO" scope="row">a</th>
-                    <th name="uid" style="display:none" id="a"></th>
-                    <td name="num"><input style="width:100px;" type="text" value=""></td>
-                    <td name="num"><input style="width:50px;" type="text" value=""></td>
-                    <td name="shares"><input style="width:50px;" type="text" value=""></td>
-                    <td name="price"><input style="width:50px;" type="text" value=""></td>
-                    <td name="tax"><input style="width:50px;" type="text" value=""></td>
-                    <td name="handlingfee"><input style="width:50px;" type="text" value=""></td>
-                    <td name="cost"><input style="width:50px;" type="text" value=""></td>
-                    <td name="num" style="width: 50px;"><button type="button" class="btn btn-danger">del</button></td>
-                    <td name="num" style="width: 50px;"><button type="button" class="btn btn-primary">ok</button></td>
-                </tr>
+
             </tbody>
         </table>
         hhha
@@ -72,6 +46,11 @@
         <button type="button" class="btn btn-light">Light</button>
         <button type="button" class="btn btn-dark">Dark</button>
         <br>
+        <br>
+        <br>
+        <button id="btn_download" type="button" class="btn btn-dark">down excel</button>
+        <button id="btn_serialize" type="button" class="btn btn-dark">test2</button>
+        
 
     </div>
 
@@ -88,6 +67,7 @@
     }
 
 
+
     #tid1 tr td {
         margin: 5;
         padding: 5;
@@ -98,6 +78,8 @@
 
 <script src="./tools/jquery.min.js"></script>
 <script src="./tools/table-dragger.js"></script>
+
+<script src="toExcel.js"></script>
 
 <script src="stock.js"></script>
 
