@@ -14,7 +14,7 @@
   },
   "background": {
     "scripts": [
-      "background.js"
+      "notuse/background.js"
     ]
   },
   "commands": {
@@ -47,7 +47,7 @@
         "https://*/"
       ],
       "js": [
-        "execute.js"
+        "notuse/execute.js"
       ]
     }
   ]
