@@ -2538,7 +2538,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function onDrag() {
 	      (0, _util.css)(document.body, { overflow: 'hidden' });
 	      var barWidth = (0, _util.getScrollBarWidth)();
-	      console.log(barWidth, 'barWidth');
+	      //console.log(barWidth, 'barWidth');
 	      if (barWidth) {
 	        (0, _util.css)(document.body, { 'padding-right': barWidth + bodyPaddingRight + 'px' });
 	      }
